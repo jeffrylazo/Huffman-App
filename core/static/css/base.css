@@ -1,0 +1,371 @@
+/* <---------------------- CSS Variables -----------------------> */
+
+:root {
+    /* Window */
+    --screen-width: 1500px;
+    --background-image: url("../img/background.jpg");
+    /* Nav bar parameters */
+    --padding-nav-bar: 10px 0px;
+    --nav-bar-background: black;
+    --nav-bar-menu-background: rgba(121, 56, 31, 0.8);
+    --nav-bar-font: 16px Arial, sans-serif;
+    --nav-bar-color: white;
+    /* Request parameters */
+    --form-background-color: rgba(100, 155, 255,0.25);
+    --form-border: 2px solid rgb(0, 195, 255);
+    --form-min-width: 80%;
+    --textarea-min-width: 92%;
+    --textarea-msg-height: 150px;
+    --textarea-key-height: 80px;
+    --textarea-background: rgb(211,211,211);
+    --textarea-border: 1px solid white;
+    --button-background-color: rgb(0, 217, 255);
+    /* Response parameters */
+    --radio-active-background-color: rgba(0, 217, 255,0.35);
+    --radio-inactive-background-color: var(--form-background-color);
+    --sector-background: var(--radio-active-background-color);
+    --radio-border: var(--form-border);
+    --radio-border-common: 1px solid rgb(0, 195, 255);
+    --paragraph-background: var(--textarea-background);
+    --error-message-background: red;
+    --tables-background: rgba(211,211,211,0.8);
+    --tables-border: 1px solid black;
+    --response-element-min-width: 340px;
+    --selector-labels-width: calc((var(--response-element-min-width) / 2) - 32px);
+    /* Text parameters */
+    --text-font-1: 16px/18px 'Times New Roman', sans-serif;
+    --text-font-2: bold 14px Arial, sans-serif;
+}
+
+/* <-------- Initializing screen size and background -----------> */
+
+body {
+    background-image: var(--background-image);
+    background-position:center top;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    margin: auto;
+}
+
+/* <------------- Navigation bar and its elements -------------> */
+
+.nav_bar {
+    position: sticky;
+    top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    padding: var(--padding-nav-bar);
+    z-index: 1;
+    background: var(--nav-bar-background);
+}
+
+.nav_bar_element {
+    margin: 5px 10px;
+}
+
+a {
+    display: block;
+    width: 90px;
+    text-align: center;
+    padding: 7px 15px;
+    margin: auto;
+    background: var(--nav-bar-menu-background);
+    border-radius: 10px;
+    text-decoration: none;
+    font: var(--nav-bar-font);
+    color: var(--nav-bar-color);
+}
+
+a:link, a:visited {
+    text-decoration: none;
+  }
+  
+a:hover, a:active {
+    text-decoration: underline;
+}
+
+.content{
+    max-width: var(--screen-width);
+    justify-content: center;
+    margin: 15px auto 0 auto;
+    z-index: 0;
+}
+
+/* <-------------------- Basic table style --------------------> */
+
+table, th, td {
+    border: var(--tables-border);
+    background: var(--tables-background);
+    border-collapse: collapse;
+    padding: 2px 10px;
+}
+
+thead {
+    text-align: left;
+}
+
+/* <------------------- Basic textarea style  -----------------> */
+
+textarea {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    min-width: var(--textarea-min-width);
+    border: var(--textarea-border);
+    background: var(--textarea-background);
+    resize: none;
+    outline: none;
+    font: var(--text-font-1);
+}
+
+/* <-- Screen distribution for request and response sections --> */
+
+.content .request, body .response {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* <-------------------- Basic form style ----------------------> */
+
+form {
+    margin-top: 5px;
+    min-width: var(--form-min-width);
+    border: var(--form-border);
+    background-color: var(--form-background-color);
+    border-radius: 25px;
+    box-shadow: 10px 10px 20px;
+}
+
+/* <----------------- Basic paragraph style --------------------> */
+
+p {
+    text-align: left;
+    font: var(--text-font-1);
+    letter-spacing: 0.5px;
+    word-wrap: break-word;
+    padding: 10px;
+    margin: 10px 40px;
+    background: var(--tables-background);
+}
+
+/* <------------------- Flask Messages -------------------------> */
+
+p[id="f_error"] {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    min-width: 300px;
+    max-width: 400px;
+    background-color: var(--error-message-background);
+    font: var(--text-font-2);
+    color: white;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    box-shadow: 10px 10px 20px;
+}
+
+/* <---------------------Basic label style ---------------------> */
+
+label {
+    font: var(--text-font-2);
+}
+
+/* <------------------- Summit buttom style --------------------> */
+
+.submit_button {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+input[type="submit"] {
+    width: 200px;
+    height: 35px;
+    background: var(--button-background-color);
+    border-radius: 10px;
+    outline:none;
+    font: var(--text-font-2);
+}
+
+/* <---------------- CSS for compress.html only ----------------> */
+
+/* Style for the request section */
+
+.compress_form {      /*Extends: form */
+    height: 230px;
+    backdrop-filter: blur(30px);
+}
+
+.compress_form .text{
+    position: relative;
+    height: calc(var(--textarea-msg-height) + 35px);
+}
+
+textarea[name="msg_to_compress"] {
+    top:10%;
+    height: var(--textarea-msg-height);
+  }
+
+/* Style for the response section */
+
+.response {
+    flex-direction: column;
+}
+
+.response_element {
+    min-width: var(--response-element-min-width);
+    max-width: var(--form-min-width);
+    border: var(--form-border);
+    background-color: var(--sector-background);
+    border-radius: 25px;
+    margin: 0px auto;
+    backdrop-filter: blur(30px);
+    box-shadow: 10px 10px 20px;
+}
+
+.table_info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 0px;
+    gap:10px;
+}
+
+.table_printout {
+    padding: 10px 27px;
+    align-content: center;
+}
+
+.table_printout table td:nth-child(1) {
+    font-weight: bold;
+    text-align: center;
+    min-width: 40px;
+}
+
+.table_printout table td:nth-child(2) {
+    min-width: 80px;
+}
+
+#code_block {
+    display: block;
+}
+
+#key_block {
+    display: none;
+}
+
+#selector_menu {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 10px;
+    border: none;
+    background: none;
+    border-radius: 0px;
+    min-width: 300px;
+    box-shadow: 0px 0px 0px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label[name="selector_label"] {
+    display: block;
+    width: var(--selector-labels-width);
+    text-align: center;
+    padding: 5px;
+    background-color: var(--radio-inactive-background-color);
+    border: var(--radio-border);
+}
+
+label[for="key"] {
+    border-left: var(--radio-border-common);
+    border-bottom: none;
+}
+
+label[for="code"] {
+    border-right: var(--radio-border-common);
+    border-bottom: none;
+}
+
+input[type="radio"]:checked + label[name="selector_label"] {
+    background:var(--radio-active-background-color);
+}
+
+label[for="msg_compressed"] {
+    display: block;
+    text-align: center;
+}
+
+#new_msg_block {
+    margin-top: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-height: 400px;
+}
+
+#msg_compressed {
+    max-height: 320px;
+    overflow-y: hidden;
+}
+
+#msg_compressed:hover{
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+
+/* <-------------- CSS for decompress.html only ---------------> */
+
+/* Style for the request section */
+
+.request .decompress_form {       /*Extends: .request form */
+    height: 400px;
+    backdrop-filter: blur(30px);
+}
+
+.decompress_form .text {
+    position: relative;
+    height: calc( ( var(--textarea-msg-height) + 25px ) * 2 );
+}
+
+.decompress_form label {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    font: var(--text-font-2);
+}
+
+label[for="key_dec"] {
+    top:5%;
+}
+
+textarea[name="msg_key_decompress"] {
+    top:12%;
+    height: var(--textarea-key-height);
+}
+
+label[for="msg_dec"] {
+    top:42%;
+}
+
+textarea[name="msg_to_decompress"] {
+    top:50%;
+    height: var(--textarea-msg-height);
+}
+
+/* Style for the response section */
+
+label[for="msg_decompressed"] {
+    display: block;
+    text-align: center;
+}
+
+#old_msg_block {
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

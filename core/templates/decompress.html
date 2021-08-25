@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Huffman Translator - Decompress</title>
+{% endblock head %}
+
+{% block body %}
+    <div class="request">
+        <form class="decompress_form" action="/decompress" method="POST">
+            <div class="request_element text">               
+                {% if ((data[0] is sameas none) and (data[2] is sameas none)) %}
+                    <label for="key_dec">Key</label>
+                    <textarea name="msg_key_decompress" id="key_dec" rows="4" placeholder="[('a','01'),('*','0010'),...('1','10')]"></textarea>
+                    <label for="msg_dec">Compressed Message</label>
+                    <textarea name="msg_to_decompress" id="msg_dec" rows="4" placeholder="01010101010"></textarea>
+                {% else %}
+                    <label for="key_dec">Key</label>
+                    <textarea name="msg_key_decompress" id="key_dec" rows="4" placeholder="[('a','01'),('*','0010'),...('1','10')]">{{ data[2] }}</textarea>
+                    <label for="msg_dec">Compressed Message</label>
+                    <textarea name="msg_to_decompress" id="msg_dec" rows="4" placeholder="01010101010">{{ data[0] }}</textarea>
+                {% endif %}
+            </div>
+            <div class="request_element submit_button">
+                <input class="submit_btn" type="submit" value="Decompress Text">
+            </div>
+        </form>
+    </div>
+    {% if data[3] is sameas false %}
+        <div class="response">
+            <div class="response_element" id="old_msg_block">
+                <label for="msg_decompressed">Decompressed Message</label>
+                <p name="msg_decompressed" id="msg_decompressed">
+                    {% for paragraph in range(data[1]|length) %}
+                        {{ data[1][paragraph] }}<br>
+                    {% endfor %}
+                </p>
+            </div> 
+        </div>
+    {% endif %}
+
+{% endblock body %}

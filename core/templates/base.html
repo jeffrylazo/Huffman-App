@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="application-name" content="Huffman Translator">
+        <meta name="description" content="Simple application for encoding and decoding text with Huffman coding">
+        <meta name="keywords" content="Huffman, Encoding, Decoding">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class="nav_bar">
+            <div class="nav_bar_element">
+                <a href="{{ url_for('huffman_translator.index') }}">Home</a>
+            </div>
+            <div class="nav_bar_element">
+                <a href=" {{ url_for('huffman_translator.compress') }} ">Compress</a>
+            </div>
+            <div class="nav_bar_element">
+                <a href="{{ url_for('huffman_translator.decompress') }}">Decompress</a> 
+            </div>
+        </div>
+        
+        <div class="content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for type, msg in messages %}
+                        <p id="f_{{type}}">{{msg}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

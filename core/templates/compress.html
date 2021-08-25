@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Huffman Translator - Compress</title>
+    <script type="text/javascript" src="{{url_for('static',filename='js/main.js')}}"></script>
+{% endblock %}
+{% block body %}
+    <div class="request">
+        <form class="compress_form" action="/compress" method="POST">
+            <div class="request_element text">
+                {% if data[3] is sameas true %}
+                    <textarea name="msg_to_compress" rows="4" maxlength="3000" placeholder="Hello"></textarea>
+                {% else %}
+                    <textarea name="msg_to_compress" rows="4" maxlength="3000" placeholder="Hello">{{ data[0] }}</textarea>
+                {% endif %}
+            </div>
+            <div class="request_element submit_button">
+                <input class="submit_btn" type="submit" value="Compress Text">
+            </div>
+        </form>
+    </div>
+    {% if data[3] is sameas false %}
+        <div class="response">
+
+            <div class="response_element" id="selector_menu" onchange="selector()">
+                <div class="selector_element">
+                    <input type="radio" name="selector_check" id="code" checked>
+                    <label name="selector_label" for="code">Huffman Code</label>
+                </div>
+                <div class="selector_element">
+                    <input type="radio" name="selector_check" id="key">
+                    <label name="selector_label" for="key">Key</label>
+                </div>
+            </div>
+
+            <div class="response_element" id="key_block">
+                <p name="msg_key_compress" id="msg_key_compress">{{ data[2] }}</p>
+            </div> 
+
+            <div class="response_element" id="code_block">
+                <div class="table_info">
+                    {% set maxRow = 10 %}
+                    {% set numOfElements = data[2]|length %}
+                    {% for row in range((numOfElements/maxRow)|round(0,'ceil')|int) %}
+                    <div class=table_printout id="huffman_code">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th>Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for key,value in data[2][maxRow*row:maxRow*row+maxRow] %}
+                                    <tr>
+                                        {% if key == "\n" %}
+                                            <td>\n</td>
+                                        {% elif key == "\r" %}
+                                            <td>\r</td>
+                                        {% elif key == "\t" %}
+                                            <td>\t</td>
+                                        {% elif key == " " %}
+                                            <td>space</td>
+                                        {% else %}
+                                            <td>{{ key }}</td>
+                                        {% endif %}
+                                        <td>{{ value }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>    
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="response_element" id="new_msg_block">
+                <label for="msg_compressed">Binary</label>
+                <p name="msg_compressed" id="msg_compressed">{{ data[1] }}</p>
+            </div> 
+        </div>
+    {% endif %}
+{% endblock %}
