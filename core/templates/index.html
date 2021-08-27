@@ -6,23 +6,22 @@
 
 {% block body %}
     <div class="index">    
-        <h2 class="index_header">Algorithm Name:</h2>
-        <p class="index_description">Huffman Coding</p>
-        <h2 class="index_header">Strategy:</h2>
-        <p class="index_description">Lossless Compression</p>
+        <h2 class="index_header">Algorithm Name: Huffman Coding</h2>
+        <h2 class="index_header">Strategy: Lossless Compression</h2>
         <h2 class="index_header">Compression Process</h2>
         <p class="index_description">
-            A Huffman tree is generated using the frequencies of each of the symbols in the 
-            text to be compressed. This tree assigns a binary code to each symbol. This mapping 
-            is known as Huffman code. It can be stored in the form of a dictionary in Python. 
-            This code is used to compress the given text. 
+            A request containing the text to be compressed is sent to the API. A huffman tree is 
+            generated using the frequencies at which each of the symbols on the text appear. Once 
+            all symbols have been processed, the uses the tree to assign a binary code with variable 
+            length to each of them. This mapping is known as Huffman code, which can be stured in 
+            the form of a dictionary in Python. Afterwards, the text is compressed with this code.
         </p>
         <h2 class="index_header">Decompression Process</h2>
         <p class="index_description">
-            The compressed text is reverted to its original form using the Huffman code. The 
-            algorithm test each bit or group of bits against the ones in the code. If there 
-            is a match, a symbol is assigned to it. Otherwise, the group increases by one bit 
-            and the process starts again until all bits have been processed.
+            The compressed text is reverted to its original form with the correct Huffman code. The 
+            algorithm test each bit or group of bits against the ones in the code. If there is a match, 
+            a symbol is assigned to it. Otherwise, the group increases by one bit and the process 
+            starts again until all bits have been processed.
         </p>
     </div>
 {% endblock %}

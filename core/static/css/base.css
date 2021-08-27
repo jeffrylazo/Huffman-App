@@ -36,6 +36,9 @@
     /* Text parameters */
     --text-font-1: 16px/18px 'Times New Roman', sans-serif;
     --text-font-2: bold 14px Arial, sans-serif;
+    /* Box shadow */
+    --box-shadow-effect: 10px 10px 20px;
+    --box-shadow-effect-1: 0 0 1rem 0 rgba(0,0,0,0.2);
 }
 
 /* <-------- Initializing screen size and background -----------> */
@@ -123,7 +126,7 @@ textarea {
 
 /* <-- Screen distribution for request and response sections --> */
 
-.content .request, body .response, body .index {
+.content .request, .content .response, .content .index {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -137,7 +140,7 @@ form {
     border: var(--form-border);
     background-color: var(--form-background-color);
     border-radius: 25px;
-    box-shadow: 10px 10px 20px;
+    box-shadow: var(--box-shadow-effect);
 }
 
 /* <----------------- Basic paragraph style --------------------> */
@@ -165,7 +168,7 @@ p[id="f_error"] {
     color: white;
     padding-bottom: 10px;
     margin-bottom: 20px;
-    box-shadow: 10px 10px 20px;
+    box-shadow: var(--box-shadow-effect);
 }
 
 /* <---------------------Basic label style ---------------------> */
@@ -373,26 +376,44 @@ label[for="msg_decompressed"] {
 
 /* <----------------- CSS for index.html only -----------------> */
 
-body .index:before {
-    content: '';
-    box-shadow: 10px 10px 20px;
-    filter: blur(10px);
+.content .index:before {
+    content: "";
+    position: absolute;
+    /*background: rgba(211,211,211,0.2);*/
     background: inherit;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0 0 5000px rgba(100, 155, 255,0.4) inset;
+    border-radius: 25px;
+    filter: blur(10px);
 }
 
-body .index {
-    margin-top: 60px;
+.content .index {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 60px auto 0px auto;
     flex-direction: column;
-    background: inherit;
+    min-width: var(--response-element-min-width);
+    max-width: var(--form-min-width);
+    border-radius: 25px;
+    box-shadow: 0 0 200px 0 black;
+    background: rgba(100, 155, 255,0.2);
+    position: relative;
 }
 
 h2[class="index_header"] {
     display: block;
+    margin: 10px 40px;
+    padding: 5px 10px;
     text-align: center;
+    margin-top: 20px;
+    background: rgba(211,211,211,0.9); 
 }
 
 p[class="index_description"] {
-    margin: 0px 10px 0px 10px;
     font-size: 18px;
-    background: none; 
+    margin-top: 0px;
+    background: rgba(211,211,211,0.9); 
 }
