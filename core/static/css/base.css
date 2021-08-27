@@ -12,6 +12,7 @@
     --nav-bar-color: white;
     /* Request parameters */
     --form-background-color: rgba(100, 155, 255,0.25);
+    --form-background-color-1: rgba(100, 155, 255,0.90);
     --form-border: 2px solid rgb(0, 195, 255);
     --form-min-width: 80%;
     --textarea-min-width: 92%;
@@ -122,7 +123,7 @@ textarea {
 
 /* <-- Screen distribution for request and response sections --> */
 
-.content .request, body .response {
+.content .request, body .response, body .index {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -368,4 +369,30 @@ label[for="msg_decompressed"] {
     margin-top: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+/* <----------------- CSS for index.html only -----------------> */
+
+body .index:before {
+    content: '';
+    box-shadow: 10px 10px 20px;
+    filter: blur(10px);
+    background: inherit;
+}
+
+body .index {
+    margin-top: 60px;
+    flex-direction: column;
+    background: inherit;
+}
+
+h2[class="index_header"] {
+    display: block;
+    text-align: center;
+}
+
+p[class="index_description"] {
+    margin: 0px 10px 0px 10px;
+    font-size: 18px;
+    background: none; 
 }

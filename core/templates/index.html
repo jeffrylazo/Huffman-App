@@ -1,10 +1,28 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Huffman Translator</title>
+    <title>Huffman Translator - Home</title>
 {% endblock %}
 
 {% block body %}
-
-
+    <div class="index">    
+        <h2 class="index_header">Algorithm Name:</h2>
+        <p class="index_description">Huffman Coding</p>
+        <h2 class="index_header">Strategy:</h2>
+        <p class="index_description">Lossless Compression</p>
+        <h2 class="index_header">Compression Process</h2>
+        <p class="index_description">
+            A Huffman tree is generated using the frequencies of each of the symbols in the 
+            text to be compressed. This tree assigns a binary code to each symbol. This mapping 
+            is known as Huffman code. It can be stored in the form of a dictionary in Python. 
+            This code is used to compress the given text. 
+        </p>
+        <h2 class="index_header">Decompression Process</h2>
+        <p class="index_description">
+            The compressed text is reverted to its original form using the Huffman code. The 
+            algorithm test each bit or group of bits against the ones in the code. If there 
+            is a match, a symbol is assigned to it. Otherwise, the group increases by one bit 
+            and the process starts again until all bits have been processed.
+        </p>
+    </div>
 {% endblock %}
